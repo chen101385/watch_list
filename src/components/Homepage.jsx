@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import logo from '../images/Movie-Night.jpg';
+import MovieAdd from './MovieAdd.jsx';
 
 class App extends Component {
     render() {
@@ -11,8 +12,8 @@ class App extends Component {
                     <h1 className="App-title">Welcome to WATCH LIST!!!</h1>
                 </header>
                 <p className="App-intro">
-                    To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+                    <MovieAdd />
+                </p>
             </div>
         );
     }

@@ -17,7 +17,7 @@
 }
 
 .App-logo {
-  animation: bounceIn 2s;
+  animation: bounceIn 2s infinite;
   height: 100px;
 }
 

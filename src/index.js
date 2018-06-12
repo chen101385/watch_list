@@ -17,7 +17,7 @@ ReactDOM.render(
         <div>
             <Switch>
                 <Route path="/" component={Homepage} />
-        </Switch>
+            </Switch>
         </div>
     </BrowserRouter>
 , document.getElementById('root'));
