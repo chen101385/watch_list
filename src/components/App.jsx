@@ -4,6 +4,7 @@ import logo from '../images/Movie-Night.jpg';
 import MovieAdd from './MovieAdd.jsx';
 import ShowAdd from './ShowAdd.jsx';
 import GetMovies from './GetMovies.jsx';
+import GetShows from './GetShows.jsx';
 import MovieList from './MovieList.jsx';
 import axios from 'axios';
 
@@ -27,6 +28,17 @@ class App extends Component {
         }
         catch (err) {
             console.log('getMovies failed, error:', err)
+        }
+    }
+
+    async getShows() {
+        try {
+            const response = await axios.get('/shows');
+            console.log('getShows response:', response);
+            this.setState({ showList: response });
+        }
+        catch (err) {
+            console.log('getShows failed, error:', err)
         }
     }
 
@@ -58,26 +70,36 @@ class App extends Component {
         const { movieList, showList } = this.state;
         return (
             <div className="App">
-                <header className="App-header">
+                <header className="page-header">
                     <img src={logo} className="App-logo" alt="logo" />
                     <h1 className="App-title">Welcome to WATCH LIST!!!</h1>
                 </header>
-                <div className="Movie-add">
-                    <MovieAdd
-                        addMovie={this.addMovie.bind(this)}
-                    />
-                </div>
-                <br />
-                <div className="Show-add">
-                    <ShowAdd
-                        addShow={this.addShow.bind(this)}
-                    />
-                </div>
-                <br />
-                <div>
-                    <GetMovies
-                        getMovies={this.getMovies.bind(this)}
-                    />
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-6">
+                            <MovieAdd
+                                addMovie={this.addMovie.bind(this)}
+                            />
+                        </div>
+                        <div className="col-md-6">
+                            <ShowAdd
+                                addShow={this.addShow.bind(this)}
+                            />
+                        </div>
+                    </div>
+                    <br />
+                    <div>
+                        <GetMovies
+                            getMovies={this.getMovies.bind(this)}
+                        />
+                    </div>
+                    <br />
+                    <br />
+                    <div>
+                        <GetShows
+                            getShows={this.getShows.bind(this)}
+                        />
+                    </div>
                 </div>
                 <div>
                     <MovieList

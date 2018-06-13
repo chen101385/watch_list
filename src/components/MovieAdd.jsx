@@ -30,9 +30,11 @@ class MovieAdd extends Component {
                     onChange={this.handleChange.bind(this)}
                     name="moviename"
                     value={this.state.input}
+                    size="40"
                 />
                 <br />
-                <button onClick={this.handleClick.bind(this)}>Submit Movie</button>
+                <br />
+                <button className="btn btn-lg btn-primary" onClick={this.handleClick.bind(this)}>Submit Movie</button>
             </form>
         )
     }

@@ -29,9 +29,12 @@ class ShowAdd extends Component {
                     type="text"
                     onChange={this.handleChange.bind(this)}
                     name="moviename"
-                    value={this.state.input} />
+                    value={this.state.input} 
+                    size="40"
+                    />
                 <br />
-                <button onClick={this.handleClick.bind(this)}>Submit Show</button>
+                <br />
+                <button className="btn btn-lg btn-success" onClick={this.handleClick.bind(this)}>Submit Show</button>
             </form>
         )
     }
