@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-class MovieAdd extends Component {
+class ShowAdd extends Component {
     constructor(props) {
         super(props)
 
@@ -17,25 +17,24 @@ class MovieAdd extends Component {
     handleClick(e) {
         //default button action is to submit form; refreshes pages.   
         e.preventDefault();
-        this.props.addMovie(this.state.input);
+        this.props.addShow(this.state.input);
         this.setState({ input: '' });
     }
 
     render() {
         return (
             <form>
-                <div className="search-title">Add Movie Title</div>
+                <div className="search-title">Add Show Title</div>
                 <input
                     type="text"
                     onChange={this.handleChange.bind(this)}
                     name="moviename"
-                    value={this.state.input}
-                />
+                    value={this.state.input} />
                 <br />
-                <button onClick={this.handleClick.bind(this)}>Submit Movie</button>
+                <button onClick={this.handleClick.bind(this)}>Submit Show</button>
             </form>
         )
     }
 }
 
-export default MovieAdd;
+export default ShowAdd;

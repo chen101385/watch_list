@@ -2,10 +2,14 @@
   "name": "watch_list",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080/",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "lodash": "^4.17.10",
     "mongoose": "^5.1.5",
+    "nodemon": "^1.17.5",
+    "path": "^0.12.7",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-redux": "^5.0.7",
@@ -19,6 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "nodemon": "nodemon server/index.js"
   }
 }
