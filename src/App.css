@@ -24,8 +24,12 @@
 .App-header {
   background-color: rgb(21, 176, 223);
   height: 200px;
-  padding: 20px;
+  padding: 15px;
   color: white;
+}
+
+.App-body {
+  background-color: azure;
 }
 
 .App-title {
@@ -40,7 +44,7 @@
 .List-title {
   position: relative;
   right: -13px;
-  top: 15px;
+  top: 30px;
   border-radius: 25%;
   border: 2px solid blueviolet;
   padding: 10px;
@@ -55,4 +59,9 @@
 
 .Button-padding {
   margin: 20px;
+}
+
+.Get-buttons {
+  padding-left: 20px;
+  padding-bottom: 10px;
 }
