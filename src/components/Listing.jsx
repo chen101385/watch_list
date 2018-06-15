@@ -2,11 +2,13 @@ import React from 'react';
 
 const Listing = (props) => {
     return (
-        <span>
-            <a href="#" className="list-group-item">
+        <div className="List-spacing">
+            <span>
+            <a className="list-group-item" onClick={() => props.mediaLookup(props.title)}>
             {props.title}
             </a>
         </span>
+        </div>
     )
 }
 

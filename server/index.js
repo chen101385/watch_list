@@ -12,7 +12,7 @@ app.get('/movies', (req, res) => {
     db.getAllMovies((err, result) => {
         if (err) console.log('fetch failed, error:', err);
         else {
-            console.log('this is result:', result);
+            console.log('this is movie result:', result);
             res.status(200).json(result);
         }
     })
@@ -23,7 +23,7 @@ app.get('/shows', (req, res) => {
     db.getAllShows((err, result) => {
         if (err) console.log('fetch failed, error:', err);
         else {
-            console.log('this is result:', result);
+            console.log('this is show result:', result);
             res.status(200).json(result);
         }
     })

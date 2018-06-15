@@ -42,19 +42,20 @@
 }
 
 .List-title {
+  background-color: rgb(212, 209, 209);
   position: relative;
-  right: -13px;
+  right: -14px;
   top: 30px;
   border-radius: 25%;
   border: 2px solid blueviolet;
   padding: 10px;
-  bottom: 20px;
 }
 
 .List-position {
   padding-top: 45px;
   padding-right: 20px;
   padding-left: 40px;
+  margin-top: 20px;
 }
 
 .Button-padding {
@@ -64,4 +65,18 @@
 .Get-buttons {
   padding-left: 20px;
   padding-bottom: 10px;
+}
+
+.List-spacing {
+  padding-bottom: 15px;
+}
+
+.Media-description {
+  padding-top: 75px;
+  padding-left: 15px;
+}
+
+.Overview {
+  padding: 30px;
+  text-align: left;
 }
