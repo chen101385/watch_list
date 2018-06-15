@@ -2,7 +2,7 @@ import React from 'react';
 
 const GetShows = (props) => {
     return (
-        <button className="Button-padding" onClick={props.getShows}>Get All Shows (toggle)</button>
+        <button className="Button-padding btn btn-info" onClick={props.getShows}>Get All Shows (toggle)</button>
     )
 }
 

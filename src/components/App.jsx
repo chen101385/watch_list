@@ -120,49 +120,50 @@ class App extends Component {
     }
   }
 
-  
   showLookup(title) {
     try {
       axios
-      .get(
-        `https://api.themoviedb.org/3/search/tv?api_key=${
-          key.API_KEY
-        }&query=${title}`
-      )
-      .then(response => {
-        console.log("this is TV SHOW lookup response", response);
-        //figure out how to incorporate response into state
-        //an array; [0] {id, original_title, overview, vote_average, vote_count}
-        this.setState({
-          searchResults: response.data.results
+        .get(
+          `https://api.themoviedb.org/3/search/tv?api_key=${
+            key.API_KEY
+          }&query=${title}`
+        )
+        .then(response => {
+          console.log("this is TV SHOW lookup response", response);
+          //figure out how to incorporate response into state
+          //an array; [0] {id, original_title, overview, vote_average, vote_count}
+          this.setState({
+            searchResults: response.data.results
+          });
         });
-      });
     } catch (err) {
       console.log("media lookup FAILED!:", err);
     }
   }
-  
+
   movieRandomizer() {
-    return this.state.movieList[Math.floor(Math.random() * this.state.movieList.length)];
+    return this.state.movieList[
+      Math.floor(Math.random() * this.state.movieList.length)
+    ];
   }
 
   showRandomizer() {
-    return this.state.showList[Math.floor(Math.random() * this.state.showList.length)];
+    return this.state.showList[
+      Math.floor(Math.random() * this.state.showList.length)
+    ];
   }
 
   async componentWillMount() {
-
     try {
       const showResponse = await axios.get("/shows"),
-       movieResponse = await axios.get("/movies");
-  
-       this.setState({
-         showList: showResponse.data,
-         movieList: movieResponse.data
-       })
-    }
-    catch (err) {
-      console.log('initial show & movie loading failed :', err)
+        movieResponse = await axios.get("/movies");
+
+      this.setState({
+        showList: showResponse.data,
+        movieList: movieResponse.data
+      });
+    } catch (err) {
+      console.log("initial show & movie loading failed :", err);
     }
   }
 
@@ -184,17 +185,17 @@ class App extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-6">
-                <MovieAdd 
-                addMovie={this.addMovie.bind(this)}
-                movieRandomizer={this.movieRandomizer.bind(this)} 
-                movieLookup={this.movieLookup.bind(this)}
+                <MovieAdd
+                  addMovie={this.addMovie.bind(this)}
+                  movieRandomizer={this.movieRandomizer.bind(this)}
+                  movieLookup={this.movieLookup.bind(this)}
                 />{" "}
               </div>{" "}
               <div className="col-md-6">
-                <ShowAdd 
-                addShow={this.addShow.bind(this)}
-                showRandomizer={this.showRandomizer.bind(this)}
-                showLookup={this.showLookup.bind(this)}
+                <ShowAdd
+                  addShow={this.addShow.bind(this)}
+                  showRandomizer={this.showRandomizer.bind(this)}
+                  showLookup={this.showLookup.bind(this)}
                 />{" "}
               </div>{" "}
             </div>{" "}
@@ -211,21 +212,25 @@ class App extends Component {
           <div className="list-group col-md-4">
             <p className="List-title"> Movies </p>{" "}
             <div className="List-position">
-              <MovieList
-                movies={movieList}
-                movieLookup={this.movieLookup.bind(this)}
-                displayMovies={displayMovies}
-              />{" "}
+              <ul>
+                <MovieList
+                  movies={movieList}
+                  movieLookup={this.movieLookup.bind(this)}
+                  displayMovies={displayMovies}
+                />{" "}
+              </ul>
             </div>{" "}
           </div>{" "}
-          <div className="Media-list list-group col-md-4">
+          <div className="list-group col-md-4">
             <p className="List-title"> Shows </p>{" "}
             <div className="List-position">
-              <ShowList
-                shows={showList}
-                showLookup={this.showLookup.bind(this)}
-                displayShows={displayShows}
-              />{" "}
+              <ul>
+                <ShowList
+                  shows={showList}
+                  showLookup={this.showLookup.bind(this)}
+                  displayShows={displayShows}
+                />{" "}
+              </ul>
             </div>{" "}
           </div>{" "}
           <div className="Media-list list-group col-md-4">
