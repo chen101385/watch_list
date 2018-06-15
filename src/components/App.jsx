@@ -6,6 +6,7 @@ import ShowAdd from './ShowAdd.jsx';
 import GetMovies from './GetMovies.jsx';
 import GetShows from './GetShows.jsx';
 import MovieList from './MovieList.jsx';
+import ShowList from './ShowList.jsx';
 import axios from 'axios';
 
 class App extends Component {
@@ -104,6 +105,11 @@ class App extends Component {
                 <div>
                     <MovieList
                         movies={movieList}
+                    />
+                </div>
+                <div>
+                    <ShowList
+                        shows={showList}
                     />
                 </div>
             </div>

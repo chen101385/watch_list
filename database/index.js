@@ -23,6 +23,12 @@ const getAllMovies = cb => {
     })
 }
 
+const getAllShows = cb => {
+    Shows.find().exec((err, res) => {
+        if (err) cb(err, null);
+        else cb(null, res);
+    })
+}
 const addMovie = (movie, cb) => {
     let newMovie = new Movies(movie)
 
@@ -77,6 +83,7 @@ const addShow = (show, cb) => {
 
 module.exports = {
     getAllMovies,
+    getAllShows,
     addMovie,
     addShow
 }
