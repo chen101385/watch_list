@@ -42,13 +42,16 @@
 }
 
 .List-title {
-  background-color: rgb(212, 209, 209);
+  display: inline-block;
+  width: 35%;
+  background-color: rgb(138, 241, 219);
   position: relative;
   right: -14px;
   top: 30px;
-  border-radius: 25%;
-  border: 2px solid blueviolet;
+  border-radius: 35%;
+  border: 1px solid blueviolet;
   padding: 10px;
+  font-weight: bold;
 }
 
 .List-position {

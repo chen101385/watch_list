@@ -25,56 +25,47 @@ class Media extends Component {
   }
 
   render() {
+    let result = this.props.searchResults
+      ? this.props.searchResults[this.state.current]
+      : null;
+    let searchResults = this.props.searchResults
+      ? this.props.searchResults
+      : null;
     return (
       <div>
         <div className="Media-image">
           <img
             src={
-              this.props.searchResults
-                ? `https://image.tmdb.org/t/p/w200${
-                    this.props.searchResults[this.state.current].poster_path
-                  }`
+              searchResults
+                ? `https://image.tmdb.org/t/p/w200${result.poster_path}`
                 : null
             }
             alt=""
           />
         </div>
-        <span>
-          ID:{" "}
-          {this.props.searchResults
-            ? this.props.searchResults[this.state.current].id
-            : ""}{" "}
-        </span>{" "}
-        <br />
+        <span>ID: {searchResults ? result.id : ""} </span> <br />
         <br />
         <span>
           {" "}
           Title Name:{" "}
-          {this.props.searchResults
-            ? this.props.searchResults[this.state.current].original_title
+          {searchResults
+            ? result.original_title
+              ? result.original_title
+              : result.original_name
             : ""}{" "}
         </span>{" "}
         <br />
         <br />
         <span>
           Average Review:{" "}
-          {this.props.searchResults
-            ? `${
-                this.props.searchResults[this.state.current].vote_average
-              } - (Reviews: ${
-                this.props.searchResults[this.state.current].vote_count
-              })`
+          {searchResults
+            ? `${result.vote_average} - (Reviews: ${result.vote_count})`
             : ""}{" "}
         </span>{" "}
         <br />
         <br />
         <b> Overview </b>{" "}
-        <div className="Overview">
-          {" "}
-          {this.props.searchResults
-            ? this.props.searchResults[this.state.current].overview
-            : ""}{" "}
-        </div>{" "}
+        <div className="Overview"> {searchResults ? result.overview : ""} </div>{" "}
         <div>
           <button className="Selection-button" onClick={() => this.previous()}>
             {" "}

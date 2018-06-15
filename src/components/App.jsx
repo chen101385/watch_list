@@ -209,7 +209,7 @@ class App extends Component {
             </div>{" "}
           </div>{" "}
           <div className="list-group col-md-4">
-            <span className="List-title"> Movies </span>{" "}
+            <p className="List-title"> Movies </p>{" "}
             <div className="List-position">
               <MovieList
                 movies={movieList}
@@ -219,7 +219,7 @@ class App extends Component {
             </div>{" "}
           </div>{" "}
           <div className="Media-list list-group col-md-4">
-            <span className="List-title"> Shows </span>{" "}
+            <p className="List-title"> Shows </p>{" "}
             <div className="List-position">
               <ShowList
                 shows={showList}
@@ -229,7 +229,7 @@ class App extends Component {
             </div>{" "}
           </div>{" "}
           <div className="Media-list list-group col-md-4">
-            <span className="List-title">Media Info</span>{" "}
+            <p className="List-title">Media Info</p>{" "}
             <div className="Media-description">
               <Media searchResults={searchResults} />
             </div>{" "}
