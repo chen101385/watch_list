@@ -19,8 +19,9 @@ class App extends Component {
       movieList: [],
       showList: [],
       movie_id: 0,
-      show_id: 0,
-      searchResults: null
+      searchResults: null,
+      displayMovies: false,
+      displayShows: false
     };
   }
 
@@ -28,7 +29,8 @@ class App extends Component {
     try {
       const response = await axios.get("/movies");
       this.setState({
-        movieList: response.data
+        movieList: response.data,
+        displayMovies: this.state.displayMovies ? false : true
       });
     } catch (err) {
       console.log("getMovies failed, error:", err);
@@ -39,7 +41,8 @@ class App extends Component {
     try {
       const response = await axios.get("/shows");
       this.setState({
-        showList: response.data
+        showList: response.data,
+        displayShows: this.state.displayShows ? false : true
       });
     } catch (err) {
       console.log("getShows failed, error:", err);
@@ -60,7 +63,12 @@ class App extends Component {
         })
         .then(response => {
           console.log(response);
-          this.getMovies();
+          if (this.state.displayMovies) {
+            this.setState({
+              displayMovies: this.state.displayMovies ? false : true
+            });
+            this.getMovies();
+          }
         });
     } catch (err) {
       console.log("error adding movie:", err);
@@ -79,14 +87,19 @@ class App extends Component {
         })
         .then(response => {
           console.log(response);
-          this.getShows();
+          if (this.state.displayShows) {
+            this.setState({
+              displayShows: this.state.displayShows ? false : true
+            });
+            this.getShows();
+          }
         });
     } catch (err) {
       console.log("error adding show:", err);
     }
   }
 
-  async mediaLookup(title) {
+  movieLookup(title) {
     try {
       axios
         .get(
@@ -95,7 +108,7 @@ class App extends Component {
           }&query=${title}`
         )
         .then(response => {
-          console.log("this is media lookup response", response);
+          console.log("this is MOVIE lookup response", response);
           //figure out how to incorporate response into state
           //an array; [0] {id, original_title, overview, vote_average, vote_count}
           this.setState({
@@ -107,8 +120,60 @@ class App extends Component {
     }
   }
 
+  
+  showLookup(title) {
+    try {
+      axios
+      .get(
+        `https://api.themoviedb.org/3/search/tv?api_key=${
+          key.API_KEY
+        }&query=${title}`
+      )
+      .then(response => {
+        console.log("this is TV SHOW lookup response", response);
+        //figure out how to incorporate response into state
+        //an array; [0] {id, original_title, overview, vote_average, vote_count}
+        this.setState({
+          searchResults: response.data.results
+        });
+      });
+    } catch (err) {
+      console.log("media lookup FAILED!:", err);
+    }
+  }
+  
+  movieRandomizer() {
+    return this.state.movieList[Math.floor(Math.random() * this.state.movieList.length)];
+  }
+
+  showRandomizer() {
+    return this.state.showList[Math.floor(Math.random() * this.state.showList.length)];
+  }
+
+  async componentWillMount() {
+
+    try {
+      const showResponse = await axios.get("/shows"),
+       movieResponse = await axios.get("/movies");
+  
+       this.setState({
+         showList: showResponse.data,
+         movieList: movieResponse.data
+       })
+    }
+    catch (err) {
+      console.log('initial show & movie loading failed :', err)
+    }
+  }
+
   render() {
-    const { movieList, showList, searchResults } = this.state;
+    const {
+      movieList,
+      showList,
+      searchResults,
+      displayMovies,
+      displayShows
+    } = this.state;
     return (
       <div className="App">
         <header className="page-header App-header">
@@ -119,10 +184,18 @@ class App extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-6">
-                <MovieAdd addMovie={this.addMovie.bind(this)} />{" "}
+                <MovieAdd 
+                addMovie={this.addMovie.bind(this)}
+                movieRandomizer={this.movieRandomizer.bind(this)} 
+                movieLookup={this.movieLookup.bind(this)}
+                />{" "}
               </div>{" "}
               <div className="col-md-6">
-                <ShowAdd addShow={this.addShow.bind(this)} />{" "}
+                <ShowAdd 
+                addShow={this.addShow.bind(this)}
+                showRandomizer={this.showRandomizer.bind(this)}
+                showLookup={this.showLookup.bind(this)}
+                />{" "}
               </div>{" "}
             </div>{" "}
             <br />
@@ -130,8 +203,6 @@ class App extends Component {
               <div>
                 <GetMovies getMovies={this.getMovies.bind(this)} />{" "}
               </div>{" "}
-              <br />
-              <br />
               <div>
                 <GetShows getShows={this.getShows.bind(this)} />{" "}
               </div>{" "}
@@ -142,7 +213,8 @@ class App extends Component {
             <div className="List-position">
               <MovieList
                 movies={movieList}
-                mediaLookup={this.mediaLookup.bind(this)}
+                movieLookup={this.movieLookup.bind(this)}
+                displayMovies={displayMovies}
               />{" "}
             </div>{" "}
           </div>{" "}
@@ -151,16 +223,15 @@ class App extends Component {
             <div className="List-position">
               <ShowList
                 shows={showList}
-                mediaLookup={this.mediaLookup.bind(this)}
+                showLookup={this.showLookup.bind(this)}
+                displayShows={displayShows}
               />{" "}
             </div>{" "}
           </div>{" "}
           <div className="Media-list list-group col-md-4">
             <span className="List-title">Media Info</span>{" "}
             <div className="Media-description">
-              <Media 
-              searchResults={searchResults}
-              />
+              <Media searchResults={searchResults} />
             </div>{" "}
           </div>{" "}
         </div>{" "}

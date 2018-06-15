@@ -64,7 +64,7 @@
 
 .Get-buttons {
   padding-left: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 .List-spacing {
@@ -79,4 +79,31 @@
 .Overview {
   padding: 30px;
   text-align: left;
+}
+
+.Selection-button {
+  padding: 5px;
+  margin: 15px;
+  width: 20%
+}
+
+.Media-image {
+  margin-bottom: 20px;
+}
+
+.search-title {
+  margin: 7px;
+}
+
+.Randomizer-button {
+  position: relative;
+  margin: 20px;
+  margin-top: 30px;
+}
+
+.Random-media {
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.15em;
 }

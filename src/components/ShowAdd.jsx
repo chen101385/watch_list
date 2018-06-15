@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Randomizer from './Randomizer.jsx'
 
 
 class ShowAdd extends Component {
@@ -35,6 +36,12 @@ class ShowAdd extends Component {
                 <br />
                 <br />
                 <button className="btn btn-lg btn-success" onClick={this.handleClick.bind(this)}>Submit Show</button>
+                <br />
+                <Randomizer
+                    randomizer={this.props.showRandomizer}
+                    media={"Show"}
+                    mediaLookup={this.props.showLookup}
+                />
             </form>
         )
     }

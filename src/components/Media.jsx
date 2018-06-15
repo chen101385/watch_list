@@ -1,35 +1,93 @@
-import React from "react";
+import React, { Component } from "react";
 
-const Media = props => {
-    let results = props.searchResults;
+class Media extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      current: 0
+    };
+  }
+
+  previous() {
+    if (this.state.current) {
+      this.setState({
+        current: this.state.current - 1
+      });
+    }
+  }
+
+  next() {
+    if (this.state.current < this.props.searchResults.length - 1)
+      this.setState({
+        current: this.state.current + 1
+      });
+  }
+
+  render() {
     return (
       <div>
-        <span>ID: {results ? results[0].id : ""}</span>
+        <div className="Media-image">
+          <img
+            src={
+              this.props.searchResults
+                ? `https://image.tmdb.org/t/p/w200${
+                    this.props.searchResults[this.state.current].poster_path
+                  }`
+                : null
+            }
+            alt=""
+          />
+        </div>
+        <span>
+          ID:{" "}
+          {this.props.searchResults
+            ? this.props.searchResults[this.state.current].id
+            : ""}{" "}
+        </span>{" "}
         <br />
         <br />
         <span>
           {" "}
           Title Name:{" "}
-          {results ? results[0].original_title : ""}{" "}
-        </span>
+          {this.props.searchResults
+            ? this.props.searchResults[this.state.current].original_title
+            : ""}{" "}
+        </span>{" "}
         <br />
         <br />
         <span>
           Average Review:{" "}
-          {results
-            ? `${results[0].vote_average} - (Reviews: ${
-                results[0].vote_count
+          {this.props.searchResults
+            ? `${
+                this.props.searchResults[this.state.current].vote_average
+              } - (Reviews: ${
+                this.props.searchResults[this.state.current].vote_count
               })`
             : ""}{" "}
-        </span>
+        </span>{" "}
         <br />
         <br />
-        <span><b>Overview</b></span>
+        <b> Overview </b>{" "}
         <div className="Overview">
-          {results ? results[0].overview : ""}
-        </div>
+          {" "}
+          {this.props.searchResults
+            ? this.props.searchResults[this.state.current].overview
+            : ""}{" "}
+        </div>{" "}
+        <div>
+          <button className="Selection-button" onClick={() => this.previous()}>
+            {" "}
+            Previous{" "}
+          </button>{" "}
+          <button className="Selection-button" onClick={() => this.next()}>
+            {" "}
+            Next{" "}
+          </button>{" "}
+        </div>{" "}
       </div>
     );
+  }
 }
 
 export default Media;
