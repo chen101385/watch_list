@@ -13,7 +13,18 @@ app.get('/movies', (req, res) => {
         if (err) console.log('fetch failed, error:', err);
         else {
             console.log('this is result:', result);
-            res.status(200).end();
+            res.status(200).json(result);
+        }
+    })
+})
+
+app.get('/shows', (req, res) => {
+    if (!req.body) console.log('no request body');
+    db.getAllShows((err, result) => {
+        if (err) console.log('fetch failed, error:', err);
+        else {
+            console.log('this is result:', result);
+            res.status(200).json(result);
         }
     })
 })

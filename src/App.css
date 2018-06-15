@@ -36,3 +36,23 @@
 .App-intro {
   font-size: large;
 }
+
+.List-title {
+  position: relative;
+  right: -13px;
+  top: 15px;
+  border-radius: 25%;
+  border: 2px solid blueviolet;
+  padding: 10px;
+  bottom: 20px;
+}
+
+.List-position {
+  padding-top: 45px;
+  padding-right: 20px;
+  padding-left: 40px;
+}
+
+.Button-padding {
+  margin: 20px;
+}

@@ -3,7 +3,7 @@ import Listing from './Listing.jsx';
 
 const ShowList = (props) => {
     return (
-        props.shows.map(show => <Listing title={show.title} />)
+        props.shows.map(show => <Listing key={show._id} title={show.title} />)
     )
 }
 

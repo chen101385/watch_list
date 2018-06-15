@@ -3,9 +3,13 @@ import React from 'react';
 const Listing = (props) => {
     return (
         <span>
-            <div className="title">{props.title}</div>
+            <a href="#" className="list-group-item">
+            {props.title}
+            </a>
         </span>
     )
 }
 
 export default Listing;
+
+

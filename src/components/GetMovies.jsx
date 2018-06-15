@@ -2,7 +2,7 @@ import React from 'react';
 
 const GetMovies = (props) => {
     return (
-        <button onClick={props.getMovies}>Get All Movies</button>
+        <button className="Button-padding" onClick={props.getMovies}>Get All Movies</button>
     )
 }
 
